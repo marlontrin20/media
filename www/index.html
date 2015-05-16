@@ -30,18 +30,19 @@
         <title>Media</title>
     </head>
     <body>
-<input type="button" value="Play" onClick="play()"> <br/>
-        <input type="button" value="Pause" onClick="pause()"> <br/>
-        <input type="button" value="Stop" onClick="stop()"><br />
+        <button type="button" onClick="play()">Play</button> <br/>
+        <button type="button" onClick="pause()">Pause</button> <br/>
+        <button type="button" onClick="stop()">Stop</button><br />
     
 
 
-        <script type="text/javascript" src="phonegap.js"></script>
+        
         <script type="text/javascript">
 
             var classMedia = null;
 
             function play(){
+                alert('play');
                 classMedia = new Media(
                     'http://treinaweb-cursos.s3.amazonaws.com/prod/67/arquivos/rockGuitar.mp3',
                     function(){},
@@ -71,6 +72,7 @@
             }
 
         </script>
+        <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
