@@ -30,12 +30,49 @@
         <title>Media</title>
     </head>
     <body>
+        <button type="button" onClick="play()">Play</button> <br/>
+        <button type="button" onClick="pause()">Pause</button> <br/>
+        <button type="button" onClick="stop()">Stop</button><br />
+    
 
 
-        <h1>Audio</h1>
-        <a href="audio.html">Audio</a>
+        
+        <script type="text/javascript">
+
+            var classMedia = null;
+
+            function play(){
+                alert('play');
+                classMedia = new Media(
+                    'http://treinaweb-cursos.s3.amazonaws.com/prod/67/arquivos/rockGuitar.mp3',
+                    function(){},
+                    onPlayError);
+
+                classMedia.play();
+            }
+
+            function onPlayError(error) {
+                navigator.notification.alert('Código do erro: ' + error.code    + '\n' + 'Mensagem: ' + error.message + '\n',
+                    function(){},
+                    'Erro ao executar',
+                    'Fechar');
+            }
+
+            function pause() {
+                if (classMedia != null) {
+                    classMedia.pause();
+                }
+            }
+
+
+            function stop() {
+                if (classMedia != null) {
+                    classMedia.stop();
+                }
+            }
+
+        </script>
         <script type="text/javascript" src="phonegap.js"></script>
-       
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
