@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Phonegap Midia</title>
+    </head>
+    <body>
+        <span id="tempo"></span><br/>
+        <input type="button" value="Play" onClick="play()"> <br/>
+        <input type="button" value="Pause" onClick="pause()"> <br/>
+        <input type="button" value="Stop" onClick="stop()"><br />
+        <a href="index.html">Voltar</a>
+
+
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript">
+
+            var classMedia = null;
+            var tempo = null;
+
+            function play(){
+                classMedia = new Media(
+                    'http://treinaweb-cursos.s3.amazonaws.com/prod/67/arquivos/rockGuitar.mp3',
+                    function(){},
+                    onPlayError);
+
+                classMedia.play();
+
+                if (tempo == null)
+                    tempo = setInterval(IntervaloTempo, 1000);
+            }
+
+            function IntervaloTempo(){
+                classMedia.getCurrentPosition(ExibeTempo, ErroPegarTempo);
+            }
+
+            function ExibeTempo(posicao) {
+                document.getElementById('tempo').innerHTML = posicao + ' Segundos';
+            }
+
+            function ErroPegarTempo(error){
+                alert("Erro ao pegar posição= " + error);
+                ExibeTempo("Erro em: " + error);
+            }
+
+            function onPlayError(error) {
+                navigator.notification.alert('Código do erro: ' + error.code    + '\n' + 'Mensagem: ' + error.message + '\n',
+                    function(){},
+                    'Erro ao executar',
+                    'Fechar');
+            }
+
+            function pause() {
+                if (classMedia != null) {
+                    classMedia.pause();
+                }
+            }
+
+
+            function stop() {
+                if (classMedia != null) {
+                    classMedia.stop();
+                }
+            }
+
+        </script>
+    </body>
+</html>
