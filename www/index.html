@@ -42,7 +42,11 @@
             var classMedia = null;
 
             function play(){
-                alert('play');
+                navigator.notification.alert('alert',
+                    function(){},
+                    'Erro ao executar',
+                    'Fechar');
+                    
                 classMedia = new Media(
                     'http://treinaweb-cursos.s3.amazonaws.com/prod/67/arquivos/rockGuitar.mp3',
                     function(){},
